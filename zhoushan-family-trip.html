@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d5c63">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>舟山 3天2夜 · 家庭游</title>
+<style>
+  :root{
+    --bg:#eef4f6;
+    --card:#ffffff;
+    --ink:#0f2b34;
+    --muted:#5f7d89;
+    --line:#dbe7ea;
+    --teal:#0d7c86;
+    --teal-d:#0a5c63;
+    --coral:#ff7a4d;
+    --sun:#ffb44d;
+    --green:#2fa36b;
+    --shadow:0 2px 10px rgba(15,43,52,.07), 0 12px 28px rgba(15,43,52,.06);
+    --radius:18px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0b1418;
+      --card:#15242b;
+      --ink:#e7f3f6;
+      --muted:#8fa9b4;
+      --line:#22383f;
+      --teal:#3ec6cf;
+      --teal-d:#7fdfe6;
+      --shadow:0 2px 10px rgba(0,0,0,.4), 0 12px 28px rgba(0,0,0,.3);
+    }
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 16px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(160deg,#0a5c63 0%,#0d7c86 45%,#1aa5ae 100%);
+    color:#fff;
+    padding:calc(28px + env(safe-area-inset-top)) 0 46px;
+    border-radius:0 0 30px 30px;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;left:-20%;right:-20%;bottom:-1px;height:70px;
+    background:radial-gradient(60% 100% at 50% 100%, rgba(255,255,255,.16), transparent 70%);
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .kicker{
+    display:inline-block;
+    font-size:12px;letter-spacing:.18em;
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.25);
+    padding:5px 12px;border-radius:999px;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    margin:0;
+    font-size:30px;
+    line-height:1.25;
+    letter-spacing:-.01em;
+    font-weight:800;
+  }
+  .hero h1 small{display:block;font-size:15px;font-weight:500;opacity:.85;margin-top:8px;letter-spacing:0}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{
+    font-size:13px;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.22);
+    padding:6px 12px;border-radius:999px;
+    backdrop-filter:blur(6px);
+  }
+  .onesentence{
+    margin-top:20px;
+    padding:14px 16px;
+    background:rgba(0,0,0,.16);
+    border-left:3px solid var(--sun);
+    border-radius:0 12px 12px 0;
+    font-size:14.5px;
+    line-height:1.7;
+  }
+  .onesentence b{color:#ffdca8}
+
+  /* ---------- Tabs ---------- */
+  .tabs{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter:saturate(180%) blur(14px);
+    -webkit-backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid var(--line);
+    padding:10px 0;
+    margin-bottom:18px;
+  }
+  .tabs .wrap{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-left:16px;padding-right:16px}
+  .tabs .wrap::-webkit-scrollbar{display:none}
+  .tab{
+    flex:0 0 auto;
+    text-decoration:none;
+    color:var(--muted);
+    font-size:14px;font-weight:600;
+    padding:8px 15px;border-radius:999px;
+    border:1px solid var(--line);
+    background:var(--card);
+    transition:.18s;
+    white-space:nowrap;
+  }
+  .tab.active{background:var(--teal);border-color:var(--teal);color:#fff}
+
+  /* ---------- Day card ---------- */
+  .day{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    margin-bottom:20px;
+    overflow:hidden;
+    scroll-margin-top:70px;
+  }
+  .day-head{
+    padding:18px 18px 16px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, color-mix(in srgb, var(--teal) 7%, transparent), transparent);
+  }
+  .day-head .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .day-num{
+    font-size:12px;font-weight:800;letter-spacing:.1em;
+    color:#fff;background:var(--teal);
+    padding:4px 10px;border-radius:8px;
+  }
+  .day-head h2{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
+  .day-head .maplink{
+    display:inline-flex;align-items:center;gap:4px;
+    margin-top:10px;
+    font-size:13px;font-weight:700;
+    color:var(--teal);text-decoration:none;
+    border-bottom:1px dashed color-mix(in srgb, var(--teal) 45%, transparent);
+    padding-bottom:1px;
+  }
+  .day-sub{margin:8px 0 0;font-size:13.5px;color:var(--muted)}
+  .stamina{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:999px}
+  .stamina.low{color:#22694a;background:color-mix(in srgb, var(--green) 16%, transparent)}
+  .stamina.mid{color:#8a5300;background:color-mix(in srgb, var(--sun) 22%, transparent)}
+  @media (prefers-color-scheme: dark){
+    .stamina.low{color:#7ee2ad}
+    .stamina.mid{color:#ffcf85}
+  }
+
+  /* ---------- Timeline ---------- */
+  .tl{margin:0;padding:6px 18px 16px;list-style:none;position:relative}
+  .tl::before{
+    content:"";position:absolute;left:31px;top:22px;bottom:26px;
+    width:2px;background:var(--line);border-radius:2px;
+  }
+  .item{position:relative;padding:14px 0 14px 44px}
+  .item::before{
+    content:"";position:absolute;left:22px;top:22px;
+    width:12px;height:12px;border-radius:50%;
+    background:var(--card);border:3px solid var(--teal);
+    box-shadow:0 0 0 3px var(--card);
+  }
+  .item.hotel::before{border-color:var(--coral)}
+  .item .time{
+    display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;
+    color:var(--teal);background:color-mix(in srgb, var(--teal) 12%, transparent);
+    padding:2px 8px;border-radius:6px;margin-bottom:5px;
+  }
+  .item h3{margin:0 0 5px;font-size:16.5px;font-weight:700;line-height:1.4}
+  .item p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.7}
+  .item .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .tag{font-size:11.5px;font-weight:600;padding:3px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted)}
+  .tag.ok{color:#22694a;border-color:color-mix(in srgb, var(--green) 45%, transparent);background:color-mix(in srgb, var(--green) 10%, transparent)}
+  .tag.warn{color:#8a5300;border-color:color-mix(in srgb, var(--sun) 55%, transparent);background:color-mix(in srgb, var(--sun) 12%, transparent)}
+  @media (prefers-color-scheme: dark){
+    .tag.ok{color:#7ee2ad}
+    .tag.warn{color:#ffcf85}
+  }
+  .mapbtn{
+    display:inline-flex;align-items:center;gap:5px;
+    margin-top:10px;
+    font-size:13px;font-weight:700;
+    color:var(--teal);text-decoration:none;
+    border:1px solid color-mix(in srgb, var(--teal) 40%, transparent);
+    background:color-mix(in srgb, var(--teal) 8%, transparent);
+    padding:7px 13px;border-radius:10px;
+    min-height:34px;
+  }
+  .mapbtn:active{transform:scale(.97)}
+
+  /* ---------- Callout ---------- */
+  .callout{
+    margin:4px 18px 18px;
+    padding:14px 15px;
+    border-radius:14px;
+    font-size:14px;line-height:1.75;
+  }
+  .callout h4{margin:0 0 8px;font-size:14.5px;font-weight:800;display:flex;align-items:center;gap:6px}
+  .callout ul{margin:0;padding-left:18px}
+  .callout li{margin:4px 0}
+  .callout.strategy{
+    background:color-mix(in srgb, var(--teal) 9%, transparent);
+    border:1px solid color-mix(in srgb, var(--teal) 25%, transparent);
+  }
+  .callout.strategy h4{color:var(--teal)}
+  .callout.danger{
+    background:color-mix(in srgb, var(--coral) 10%, transparent);
+    border:1px solid color-mix(in srgb, var(--coral) 32%, transparent);
+  }
+  .callout.danger h4{color:var(--coral)}
+  .callout.danger p{margin:0}
+  .callout.danger p + p{margin-top:8px}
+  .callout.compact{margin:12px 0 0;padding:11px 12px;font-size:13px;line-height:1.65}
+  .callout b{color:var(--ink)}
+
+  /* 日落提示：暖色，嵌在时间轴节点内 */
+  .callout.sunset{
+    margin:12px 0 0;padding:12px 13px;border-radius:12px;
+    background:linear-gradient(135deg,
+      color-mix(in srgb, var(--sun) 16%, transparent),
+      color-mix(in srgb, var(--coral) 12%, transparent));
+    border:1px solid color-mix(in srgb, var(--sun) 42%, transparent);
+    font-size:13.5px;line-height:1.7;
+  }
+  .callout.sunset h4{color:#a15c00}
+  .callout.sunset p{margin:0}
+  .callout.sunset p + p{margin-top:7px;color:var(--muted)}
+  @media (prefers-color-scheme: dark){
+    .callout.sunset h4{color:var(--sun)}
+  }
+
+  /* ---------- Choice cards (Day3) ---------- */
+  .choices{display:flex;flex-direction:column;gap:12px;padding:4px 18px 16px}
+  .choice{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 15px;
+    position:relative;
+    background:color-mix(in srgb, var(--card) 92%, var(--teal) 8%);
+  }
+  .choice .pick{
+    position:absolute;right:12px;top:12px;
+    font-size:11px;font-weight:800;letter-spacing:.08em;
+    color:#fff;background:var(--teal);padding:3px 8px;border-radius:6px;
+  }
+  .choice h3{margin:0 0 6px;font-size:16px;font-weight:800;padding-right:44px}
+  .choice p{margin:0;font-size:14px;color:var(--muted);line-height:1.7}
+
+  /* 内嵌在时间轴节点里的候选卡：去掉区块级内边距，与节点左对齐 */
+  .choices.inline{padding:2px 0 0;gap:10px}
+  .choices.inline .choice{padding:12px 13px;border-radius:12px}
+  .choices.inline .choice h3{font-size:15px}
+  .choices.inline .choice p{font-size:13.5px}
+  .choices.inline .choice .mapbtn{margin-top:9px}
+
+  /* ---------- 门票速查表 ---------- */
+  .tickets{
+    margin:14px 18px 10px;
+    border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;background:var(--card);
+  }
+  .tickets h4{
+    margin:0;padding:12px 14px;font-size:14.5px;font-weight:800;
+    background:color-mix(in srgb, var(--teal) 10%, transparent);
+    color:var(--teal);border-bottom:1px solid var(--line);
+  }
+  .trow{display:flex;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);align-items:flex-start}
+  .trow:last-child{border-bottom:none}
+  .tname{flex:0 0 96px;font-size:13.5px;font-weight:700;line-height:1.5}
+  .tname .tnote{font-weight:500;font-size:12px;color:var(--muted)}
+  .tdesc{flex:1;font-size:13px;line-height:1.65;color:var(--muted)}
+  .warn-t{color:#8a5300}
+  .ok-t{color:#22694a}
+  @media (prefers-color-scheme: dark){
+    .warn-t{color:#ffcf85}
+    .ok-t{color:#7ee2ad}
+  }
+
+  /* ---------- Tips ---------- */
+  .tip{
+    display:flex;gap:12px;
+    padding:15px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .tip:last-child{border-bottom:none}
+  .tip .n{
+    flex:0 0 26px;height:26px;border-radius:9px;
+    background:var(--coral);color:#fff;
+    font-size:13px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    margin-top:2px;
+  }
+  .tip p{margin:0;font-size:14.5px;line-height:1.75}
+  .tip p b{color:var(--coral)}
+
+  /* ---------- Checklist ---------- */
+  .check{list-style:none;margin:0;padding:4px 18px 18px}
+  .check li{border-bottom:1px solid var(--line)}
+  .check li:last-child{border-bottom:none}
+  .check label{
+    display:flex;align-items:center;gap:12px;
+    padding:12px 0;
+    font-size:15px;
+    cursor:pointer;
+    min-height:46px;
+  }
+  .check input{
+    appearance:none;-webkit-appearance:none;
+    width:22px;height:22px;flex:0 0 22px;
+    border:2px solid var(--line);border-radius:7px;
+    margin:0;position:relative;transition:.15s;
+  }
+  .check input:checked{background:var(--teal);border-color:var(--teal)}
+  .check input:checked::after{
+    content:"";position:absolute;left:6px;top:2px;
+    width:5px;height:10px;
+    border:solid #fff;border-width:0 2.5px 2.5px 0;
+    transform:rotate(45deg);
+  }
+  .check input:checked + span{color:var(--muted);text-decoration:line-through}
+
+  footer{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--muted);
+    padding:22px 16px calc(34px + env(safe-area-inset-bottom));
+    line-height:1.9;
+  }
+  .footer-note{
+    max-width:640px;margin:0 auto 8px;
+    background:var(--card);border-radius:14px;
+    padding:14px 16px;text-align:left;
+    border:1px solid var(--line);
+    font-size:13px;color:var(--muted);line-height:1.75;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">舟山 · 3天2夜</span>
+    <h1>带长辈 & 孕妈的海岛慢行
+      <small>70岁长辈 + 孕妈同行 · 松弛版行程</small>
+    </h1>
+    <div class="chips">
+      <span class="chip">🚗 全程自驾</span>
+      <span class="chip">🏖 平地优先</span>
+      <span class="chip">🚫 不爬山</span>
+      <span class="chip">🪑 累了就歇</span>
+    </div>
+    <div class="onesentence">
+      总纲：<b>每天只安排一个"重头戏"</b>，其余时间用来歇着。<br>
+      风景看不完没关系，人舒服最重要。
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <div class="wrap">
+    <a class="tab active" href="#day1">Day 1 · 抵达</a>
+    <a class="tab" href="#day2">Day 2 · 环岛</a>
+    <a class="tab" href="#day3">Day 3 · 返程</a>
+    <a class="tab" href="#tips">⚠️ 重点提醒</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ================= DAY 1 ================= -->
+  <section class="day" id="day1">
+    <div class="day-head">
+      <div class="row">
+        <span class="day-num">DAY 1</span>
+        <h2>入住舟山希尔顿</h2>
+        <span class="stamina low">🟢 体力 · 轻</span>
+      </div>
+      <p class="day-sub">抵达日不安排硬项目，先让身体适应海边的风和湿度。</p>
+      <a class="maplink" data-loc="舟山希尔顿酒店"
+         data-lat="29.982374" data-lng="122.335991"
+         data-addr="东港街道海洲路777号1幢">🏨 舟山希尔顿酒店 · 查看位置 →</a>
+    </div>
+
+    <ul class="tl">
+      <li class="item">
+        <span class="time">中午</span>
+        <h3>普陀天地 · 午饭（二选一）</h3>
+        <p>两家都在普陀天地里面。<b>Day2 中午在朱家尖也吃这两家</b>，两天错开点，别重复。</p>
+        <div class="choices inline">
+          <div class="choice">
+            <span class="pick">候选 A</span>
+            <h3>原制原味</h3>
+            <p>本帮家常口味，清淡少油，长辈接受度高。</p>
+          </div>
+          <div class="choice">
+            <span class="pick">候选 B</span>
+            <h3>妈妈菜</h3>
+            <p>家常菜馆，点菜灵活，适合一家人分着吃。</p>
+          </div>
+        </div>
+        <a class="mapbtn" data-loc="普陀天地"
+           data-lat="29.981568" data-lng="122.333623"
+           data-addr="普陀区海印路850号">📍 导航到普陀天地（两家都在这）</a>
+      </li>
+
+      <li class="item">
+        <span class="time">下午</span>
+        <h3>希尔顿门口 · 城市绿道</h3>
+        <p>不用开车，出酒店就是。绿道是平整铺装路面，推车、轮椅都好走，想走多远走多远，累了直接回房间躺着。</p>
+        <div class="tags">
+          <span class="tag ok">酒店门口</span>
+          <span class="tag ok">平路无台阶</span>
+          <span class="tag ok">可随时回房</span>
+        </div>
+      </li>
+
+      <li class="item">
+        <span class="time">傍晚</span>
+        <h3>普陀天地 · 逛吃休闲</h3>
+        <p>室内外结合，有电梯和空调。天热或起风时可以躲进室内慢慢逛，晚饭也在这里解决。</p>
+        <div class="tags">
+          <span class="tag ok">有电梯</span>
+          <span class="tag ok">可室内避风</span>
+          <span class="tag">晚饭待定</span>
+        </div>
+        <div class="callout sunset">
+          <h4>🌇 顺便看个日落</h4>
+          <p>舟山 9 月下旬日落约 <b>17:50</b>，最佳观赏是<b>日落前 25 分钟</b>（约 <b>17:25 起</b>）就开始的"黄金时段"，天色转橙、光线最柔和，之后还有约 30 分钟晚霞，<b>18:20 前后才全黑</b>。</p>
+          <p>不用特意赶景点，普陀天地靠海一侧朝西，傍晚找个开阔处站一会儿就行。</p>
+        </div>
+        <a class="mapbtn" data-loc="普陀天地"
+           data-lat="29.981568" data-lng="122.333623"
+           data-addr="普陀区海印路850号">📍 导航到普陀天地</a>
+      </li>
+
+      <li class="item hotel">
+        <span class="time">住宿</span>
+        <h3>🏨 舟山希尔顿</h3>
+        <p>今晚在这里休整，早点休息，为明天的环岛留体力。</p>
+        <a class="mapbtn" data-loc="舟山希尔顿酒店"
+           data-lat="29.982374" data-lng="122.335991"
+           data-addr="东港街道海洲路777号1幢">📍 导航到酒店</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= DAY 2 ================= -->
+  <section class="day" id="day2">
+    <div class="day-head">
+      <div class="row">
+        <span class="day-num">DAY 2</span>
+        <h2>换住半岛酒店</h2>
+        <span class="stamina mid">🟡 体力 · 中</span>
+      </div>
+      <p class="day-sub">下午时间充裕：南沙 + 自驾大青山环岛。全天以"车上看风景"为主。</p>
+      <a class="maplink" data-loc="舟山豪城半岛酒店"
+         data-lat="29.962012" data-lng="122.327966"
+         data-addr="Day2 住宿 · 近渔港">🏨 舟山豪城半岛酒店 · 查看位置 →</a>
+    </div>
+
+    <ul class="tl">
+      <li class="item">
+        <span class="time">早上</span>
+        <h3>酒店简单活动、休整后出发</h3>
+        <p>不赶早。等大家状态好、吃过早饭再走，出发时间可以灵活往后推。</p>
+      </li>
+
+      <li class="item">
+        <span class="time">上午</span>
+        <h3>观音圣坛</h3>
+        <p>电梯友好，以观景为主，<b>不烧香</b>。走一段就找地方坐一坐，不用赶进度。</p>
+        <div class="tags">
+          <span class="tag ok">有电梯</span>
+          <span class="tag">纯观景</span>
+        </div>
+        <a class="mapbtn" data-loc="观音圣坛"
+           data-lat="29.929694" data-lng="122.391906"
+           data-addr="朱家尖 · 电梯友好">📍 导航到观音圣坛</a>
+      </li>
+
+      <li class="item">
+        <span class="time">中午</span>
+        <h3>朱家尖镇上 · 吃午饭（二选一）</h3>
+        <p>两家都在朱家尖街道这一带，跟 Day1 那两顿<b>错开着吃</b>，两天不重样。趁这顿把水和体力补满，下午环岛路上补给点不多。</p>
+        <div class="choices inline">
+          <div class="choice">
+            <span class="pick">候选 A</span>
+            <h3>原制原味</h3>
+            <p>本帮家常口味，清淡少油，长辈接受度高。</p>
+          </div>
+          <div class="choice">
+            <span class="pick">候选 B</span>
+            <h3>妈妈菜</h3>
+            <p>家常菜馆，点菜灵活，适合一家人分着吃。</p>
+          </div>
+        </div>
+        <a class="mapbtn" data-loc="朱家尖街道"
+           data-lat="29.923524" data-lng="122.394099"
+           data-addr="午饭 · 两家都在这一带">📍 导航到朱家尖街道</a>
+      </li>
+
+      <li class="item">
+        <span class="time">下午 ①</span>
+        <h3>南沙沙滩 · 踩沙歇脚</h3>
+        <p>平地沙滩，踩踩水、拍拍照就好。带把折叠凳或直接坐在沙上，<b>不要久站</b>。</p>
+        <div class="tags">
+          <span class="tag ok">平地</span>
+          <span class="tag warn">不久站</span>
+        </div>
+        <a class="mapbtn" data-loc="朱家尖南沙景区"
+           data-lat="29.884523" data-lng="122.414853"
+           data-addr="下午① · 踩沙歇脚">📍 导航到南沙景区</a>
+      </li>
+
+      <li class="item">
+        <span class="time">下午 ②</span>
+        <h3>自驾 · 大青山环岛公路</h3>
+        <p>开自己的车进景区，沿着环岛路慢慢兜。看到喜欢的观景台就靠边短暂下车拍两张，其余时间都在车上吹着空调看海。</p>
+        <div class="callout danger compact">
+          <h4>🎫 需提前实名预约，现场买不到票</h4>
+          <p>「舟山文旅」小程序 或 公众号「朱家尖风景名胜区」预约，<b>旺季提前 3 天、平日至少 1 天</b>。入园刷身份证。</p>
+        </div>
+        <div class="tags">
+          <span class="tag warn">单向行驶</span>
+          <span class="tag warn">弯道多</span>
+          <span class="tag">车览为主</span>
+        </div>
+        <a class="mapbtn" data-loc="朱家尖大青山景区"
+           data-lat="29.856460" data-lng="122.400228"
+           data-addr="下午② · 自驾环岛">📍 导航到大青山景区</a>
+      </li>
+    </ul>
+
+    <div class="callout strategy">
+      <h4>📌 孕妈 & 长辈策略</h4>
+      <ul>
+        <li>以<b>开车观光</b>为主，观景台只做短暂下车拍照。</li>
+        <li>青山峰那段需要换乘景区小巴上山——<b>体力一般就直接放弃</b>，不去山顶。</li>
+        <li>只跑<b>山下环线 + 四季花海 + 里沙</b>即可，风景一样好，体力省一半。</li>
+      </ul>
+    </div>
+
+    <ul class="tl">
+      <li class="item hotel">
+        <span class="time">傍晚</span>
+        <h3>驶出大青山 → 半岛酒店</h3>
+        <p>落地后再去周边看<b>渔港渔船夜景</b>。今晚不用换车程太远，就近吃个晚饭收工。</p>
+        <div class="tags">
+          <span class="tag">渔港夜景</span>
+        </div>
+        <a class="mapbtn" data-loc="舟山豪城半岛酒店"
+           data-lat="29.962012" data-lng="122.327966"
+           data-addr="Day2 住宿 · 近渔港">📍 导航到半岛酒店</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= DAY 3 ================= -->
+  <section class="day" id="day3">
+    <div class="day-head">
+      <div class="row">
+        <span class="day-num">DAY 3</span>
+        <h2>歇一歇，逛一处，回上海</h2>
+        <span class="stamina low">🟢 体力 · 轻</span>
+      </div>
+      <p class="day-sub">上午在酒店慢慢歇，中午吃顿海鲜，下午挑一个景点慢慢逛，傍晚启程回上海。</p>
+      <a class="maplink" data-loc="舟山豪城半岛酒店"
+         data-lat="29.962012" data-lng="122.327966"
+         data-addr="Day3 上午 · 退房前歇脚">🏨 舟山豪城半岛酒店 · 查看位置 →</a>
+    </div>
+
+    <ul class="tl">
+      <li class="item">
+        <span class="time">上午</span>
+        <h3>酒店休息，不赶早</h3>
+        <p>退房前就在酒店待着，慢慢收拾行李、吃早饭。<b>不用安排景点</b>，把这半天留出来缓一缓，下午才有精神开车。</p>
+        <div class="tags">
+          <span class="tag ok">不赶时间</span>
+          <span class="tag ok">可慢慢退房</span>
+        </div>
+      </li>
+
+      <li class="item">
+        <span class="time">中午</span>
+        <h3>高佳庄 · 吃海鲜</h3>
+        <p>舟山本地海鲜馆，海景旗舰店。返程前吃顿好的，离半岛酒店约 4 公里。</p>
+        <div class="tags">
+          <span class="tag">海鲜</span>
+          <span class="tag">返程前最后一餐</span>
+        </div>
+        <a class="mapbtn" data-loc="高佳庄·舟山海鮮(海景旗舰店)"
+           data-lat="29.945516" data-lng="122.291084"
+           data-addr="普陀区 · 海景旗舰店">📍 导航到高佳庄</a>
+      </li>
+
+      <li class="item">
+        <span class="time">下午</span>
+        <h3>二选一 · 挑一个去</h3>
+        <p>从下面两个里挑一个，走平缓步道，累了就折返，<b>不用走完全程</b>。定一个"走到几点就回头"的时间点，比定一个"必须到哪儿"的目标更实用。</p>
+        <div class="callout strategy compact">
+          <h4>📍 注意：两个都在定海区</h4>
+          <p>不在朱家尖，从高佳庄开车过去还有一段路。选之前先看一眼导航预估时间，<b>返程别拖太晚</b>。</p>
+        </div>
+        <div class="choices inline">
+          <div class="choice">
+            <span class="pick">选项 A</span>
+            <h3>长岗山森林公园</h3>
+            <p>定海城区东侧，森林覆盖率 93%，被称为舟山的"城市绿肺"。步道平缓、树荫多，走累了随时原路折返。</p>
+          </div>
+          <div class="choice">
+            <span class="pick">选项 B</span>
+            <h3>云顶仙乡</h3>
+            <p>定海区「东海百里文廊 2.0」，主打<b>自驾观光</b>。云顶公路串联多个观景平台，蚂蟥山 478 米是舟山本岛最高峰。</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="item">
+        <span class="time">傍晚</span>
+        <h3>出发回上海</h3>
+        <p>逛完景点直接上路，留出充裕的装车时间。返程车程较长，路上多安排一次服务区休息，别赶夜路。</p>
+        <div class="tags">
+          <span class="tag">返程</span>
+          <span class="tag warn">车程较长</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= TIPS ================= -->
+  <section class="day" id="tips">
+    <div class="day-head">
+      <div class="row">
+        <span class="day-num">⚠️</span>
+        <h2>重点提醒</h2>
+      </div>
+      <p class="day-sub">出发前读一遍，路上少踩坑。</p>
+    </div>
+
+    <div class="callout danger" style="margin-top:14px">
+      <h4>🎫 必须先预约 · 大青山</h4>
+      <p><b>大青山景区实行实名制预约，现场买不到票。</b>旺季（节假日）建议<b>提前 3 天</b>，平日也至少提前 1 天。</p>
+      <p>预约渠道：<b>「舟山文旅」小程序</b>，或公众号「朱家尖风景名胜区」、携程 / 飞猪。入园刷身份证或电子票码，可能还要人脸识别。<b>出发前务必确认预约成功</b>。</p>
+    </div>
+
+    <div class="tickets">
+      <h4>各景点门票速查</h4>
+      <div class="trow">
+        <div class="tname">大青山景区</div>
+        <div class="tdesc">约 ¥100 起 · <b class="warn-t">需提前实名预约</b></div>
+      </div>
+      <div class="trow">
+        <div class="tname">观音圣坛<br><span class="tnote">（观音法界）</span></div>
+        <div class="tdesc">需购票 · 建议提前预约<br><b class="warn-t">09:00–17:30 开放，16:30 停止售票、16:40 停止入园</b></div>
+      </div>
+      <div class="trow">
+        <div class="tname">南沙景区</div>
+        <div class="tdesc">旺季成人 ¥70 · <b class="ok-t">70 岁以上免票</b><br>60–70 岁半价 ¥35<br>日间 06:00–17:30</div>
+      </div>
+      <div class="trow">
+        <div class="tname">长岗山森林公园</div>
+        <div class="tdesc">在<b>定海区</b>，需购票</div>
+      </div>
+      <div class="trow">
+        <div class="tname">云顶仙乡</div>
+        <div class="tdesc">在<b>定海区</b>（东海百里文廊 2.0）<br>主打自驾观光，蚂蟥山 478m 全岛最高峰</div>
+      </div>
+    </div>
+
+    <div class="callout strategy" style="margin-top:6px">
+      <h4>💡 两个省钱点</h4>
+      <ul>
+        <li><b>70 岁长辈带好身份证</b>——南沙景区 70 周岁（含）以上免票，60–70 岁半价。多个景区都有类似政策，证件随身带。</li>
+        <li>多个景区有「套票」，如果一天跑两个景点，先看看套票是否更划算。</li>
+      </ul>
+    </div>
+
+    <div style="padding:6px 18px 4px">
+      <div class="tip">
+        <span class="n">1</span>
+        <p>大青山环山<b>单向行驶、弯道多</b>；山上<b>风很大</b>，务必随身带薄外套；孕妈<b>不要坐景区小巴去最高山顶</b>，可直接跳过该段。</p>
+      </div>
+      <div class="tip">
+        <span class="n">2</span>
+        <p><b>分组灵活行动</b>：体力好的家人可以多下车走走；孕妈、长辈留在车上休息等候，约好回车上车点就行。</p>
+      </div>
+      <div class="tip">
+        <span class="n">3</span>
+        <p>随身备<b>零食、水、靠枕</b>；海边注意<b>防晒</b>；<b>不要走礁石湿滑区域</b>。</p>
+      </div>
+    </div>
+
+    <div class="callout danger" style="margin-top:10px">
+      <h4>🚫 三条硬底线</h4>
+      <ul>
+        <li>孕妈不上山顶、不坐景区小巴上山</li>
+        <li>不下礁石、不走湿滑区</li>
+        <li>不为了"走完全程"硬撑</li>
+      </ul>
+    </div>
+
+    <ul class="check" id="checklist">
+      <li><label><input type="checkbox" data-k="c1"><span>薄外套（山上风大，一人一件）</span></label></li>
+      <li><label><input type="checkbox" data-k="c2"><span>折叠凳 / 靠枕 / 抱枕</span></label></li>
+      <li><label><input type="checkbox" data-k="c3"><span>零食 + 足量饮用水</span></label></li>
+      <li><label><input type="checkbox" data-k="c4"><span>防晒：帽子、防晒霜、遮阳伞</span></label></li>
+      <li><label><input type="checkbox" data-k="c5"><span>孕妈用品 & 全家常用药</span></label></li>
+      <li><label><input type="checkbox" data-k="c6"><span>充电宝 + 车充</span></label></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-note">
+    📍 每个地点都有「导航」按钮，点一下会用手机里的地图 App 搜索该地点。<br>
+    <span id="provider-label"></span> 位置名如需精确到具体入口/停车场，告诉我地点名即可逐个校准。
+  </div>
+  舟山 3天2夜 · 家庭游<br>愿风不大，人不多，大家都走得动 🌊
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ===== 地图服务商：'baidu' 百度 / 'amap' 高德 ===== */
+  var PROVIDER = 'baidu';
+
+  var IS_MOBILE = /iPhone|iPod|Android|Mobile|HarmonyOS|iPad/i.test(navigator.userAgent);
+  var names = { baidu:'百度地图', amap:'高德地图' };
+
+  // 关键词搜索：百度 PC 链接在移动端会 301 跳到 webapp 并把 querytype
+  // 改写成 qt，按设备直接生成最终地址可省掉这次跳转。
+  function searchUrl(kw){
+    var q = encodeURIComponent(kw);
+    if (PROVIDER === 'amap') {
+      return 'https://uri.amap.com/search?keyword=' + q + '&view=map';
+    }
+    return IS_MOBILE
+      ? 'https://map.baidu.com/mobile/webapp/search/search?qt=s&wd=' + q
+      : 'https://map.baidu.com/search?querytype=s&wd=' + q;
+  }
+
+  // 精确位置：用官方 marker 接口把图钉钉在坐标上，打开即居中定位。
+  // 注意：不要换成 map.baidu.com/poi?uid=... 那种分享链接 —— 实测它打开
+  // 后首屏是酒店相册页（图片墙），地图被推到顶部且不显示店名/地址，
+  // 看起来像"没定位到"。marker 接口首屏就是地图 + 图钉 + 地址 + 导航按钮。
+  // location 参数用 BD09LL 经纬度；网页端百度地图的 latlng 也接受同一坐标系。
+  function poiUrl(poi){
+    var p = new URLSearchParams({
+      location: poi.lat + ',' + poi.lng,
+      title: poi.name,
+      content: poi.addr || '',
+      output: 'html',
+      src: 'webapp.zhoushan.familytrip'
+    });
+    return 'https://api.map.baidu.com/marker?' + p.toString();
+  }
+
+  function build(a){
+    // 带 data-lat/data-lng 的按钮走精确图钉，其余走关键词搜索
+    if (a.dataset.lat && a.dataset.lng) {
+      return poiUrl({
+        lat: a.dataset.lat,
+        lng: a.dataset.lng,
+        name: a.dataset.loc,
+        addr: a.dataset.addr
+      });
+    }
+    return searchUrl(a.dataset.loc);
+  }
+
+  var label = document.getElementById('provider-label');
+  if (label) label.textContent = '当前使用：' + (names[PROVIDER] || names.baidu) + '。';
+
+  document.querySelectorAll('.mapbtn[data-loc], .maplink[data-loc]').forEach(function(a){
+    a.href = build(a);
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+
+  /* ===== 顶部 Tab 高亮（滚动联动） ===== */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var sections = tabs.map(function(t){ return document.querySelector(t.getAttribute('href')); });
+
+  function setActive(idx){
+    tabs.forEach(function(t, i){ t.classList.toggle('active', i === idx); });
+    var active = tabs[idx];
+    if (active && active.scrollIntoView) {
+      active.scrollIntoView({ block:'nearest', inline:'center', behavior:'smooth' });
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    var visible = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ visible[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      var best = 0, bestRatio = 0;
+      sections.forEach(function(s, i){
+        var r = visible[s.id] || 0;
+        if (r > bestRatio) { bestRatio = r; best = i; }
+      });
+      setActive(best);
+    }, { rootMargin:'-70px 0px -55% 0px', threshold:[0, .15, .35, .6, .85, 1] });
+    sections.forEach(function(s){ io.observe(s); });
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.classList.remove('active'); });
+      t.classList.add('active');
+    });
+  });
+
+  /* ===== 物品清单：勾选状态本地保存 ===== */
+  var store = {
+    get: function(){
+      try { return JSON.parse(localStorage.getItem('zhoushan-check') || '{}'); }
+      catch(e){ return {}; }
+    },
+    set: function(v){
+      try { localStorage.setItem('zhoushan-check', JSON.stringify(v)); } catch(e){}
+    }
+  };
+
+  var saved = store.get();
+  var boxes = document.querySelectorAll('#checklist input[type=checkbox]');
+
+  boxes.forEach(function(b){
+    if (saved[b.dataset.k]) b.checked = true;
+    b.addEventListener('change', function(){
+      var cur = store.get();
+      if (b.checked) { cur[b.dataset.k] = 1; } else { delete cur[b.dataset.k]; }
+      store.set(cur);
+    });
+  });
+})();
+</script>
+</body>
+</html>
