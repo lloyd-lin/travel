@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孕晚期糖妈｜7天轮换菜谱｜喜好自定义版</title>
+<style>
+*{box-sizing:border-box;font-family:system-ui, -apple-system, sans-serif;}
+body{background:#f6f8fa;padding:14px;margin:0;}
+.container{max-width:960px;margin:0 auto;background:#fff;border-radius:16px;padding:20px;box-shadow:0 2px 12px #00000015;}
+h1{color:#2c5c97;text-align:center;font-size:20px;margin-top:0;}
+.note{background:#fff3cd;border-left:4px solid #ffc107;padding:12px;border-radius:8px;margin-bottom:16px;font-size:14px;line-height:1.6;}
+.preference-panel{background:#f0f7ff;padding:16px;border-radius:12px;margin-bottom:20px;}
+.preference-panel h3{margin-top:0;color:#2c5c97;font-size:17px;}
+.preference-panel > div{margin:10px 0 4px;font-weight:500;color:#334155;}
+.check-group{display:grid;grid-template-columns:repeat(auto-fill, minmax(140px,1fr));gap:8px;margin:8px 0 16px;}
+.check-group label{display:flex;gap:4px;cursor:pointer;font-size:14px;}
+.shop-tag{display:inline-block;background:#e8f0fe;color:#2c5c97;font-size:12px;padding:2px 6px;border-radius:4px;margin-left:6px;}
+.fish-tag{background:#e6f9ef;color:#198754;}
+.day{border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:14px;}
+.day h3{margin:0 0 10px;color:#2c5c97;border-bottom:1px solid #eee;padding-bottom:6px;}
+.item{margin:8px 0;font-size:15px;line-height:1.7;display:flex;align-items:center;gap:8px;}
+.time{font-weight:bold;color:#334155;min-width:70px;}
+.food-icon{width:28px;height:28px;object-fit:contain;}
+.btn-wrap{display:flex;gap:12px;justify-content:center;margin:16px 0;flex-wrap:wrap;}
+.rotate-btn,.reset-btn,.clear-save-btn{padding:12px 24px;border:none;border-radius:8px;font-size:16px;cursor:pointer;}
+.rotate-btn{background:#2c5c97;color:white;}
+.reset-btn{background:#94a3b8;color:#fff;}
+.clear-save-btn{background:#dc3545;color:#fff;}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>孕晚期糖妈｜7天轮换菜谱（喜好自定义）</h1>
+<div class="note">
+<b>⚠️ 重要规则（遵从医嘱单）</b><br>
+1. 水果仅血糖＜6.7mmol/L才能吃，否则替换为去皮大番茄；<br>
+2. 禁止粥、烂面、白馒头、糯米、土豆、红薯、南瓜、玉米、芋艿、勾芡浓汤；<br>
+3. 每周1~2次动物肝脏/鸭血补血（单次100g）；鱼类楼下鱼摊采购；<br>
+4. 三餐后20~30分钟温和运动，23点前休息。
+</div>
+
+<!-- ===== 个人喜好勾选区域 ===== -->
+<div class="preference-panel">
+<h3>✅ 我的食材喜好（勾选想要的，不勾选则随机不会出现）</h3>
+<div>早餐主食</div>
+<div class="check-group">
+  <label><input type="checkbox" name="breakfastCarb" checked value="全麦面包50g">全麦面包</label>
+  <label><input type="checkbox" name="breakfastCarb" checked value="纯燕麦50g">纯燕麦</label>
+  <label><input type="checkbox" name="breakfastCarb" checked value="荞麦饼50g">荞麦饼</label>
+</div>
+<div>午餐红肉/禽肉</div>
+<div class="check-group">
+  <label><input type="checkbox" name="lunchMeat" checked value="瘦牛肉100g">瘦牛肉</label>
+  <label><input type="checkbox" name="lunchMeat" checked value="鸭血100g">鸭血</label>
+  <label><input type="checkbox" name="lunchMeat" checked value="牛心100g">牛心</label>
+  <label><input type="checkbox" name="lunchMeat" checked value="卤鸡肝100g">鸡肝</label>
+  <label><input type="checkbox" name="lunchMeat" checked value="瘦鸭胸100g">瘦鸭胸</label>
+  <label><input type="checkbox" name="lunchMeat" checked value="瘦肉+豆干100g">瘦肉豆干</label>
+</div>
+<div>晚餐鱼/虾（楼下鱼摊）</div>
+<div class="check-group">
+  <label><input type="checkbox" name="fishList" checked value="清蒸鲈鱼100g">鲈鱼</label>
+  <label><input type="checkbox" name="fishList" checked value="清蒸鳕鱼100g">鳕鱼</label>
+  <label><input type="checkbox" name="fishList" checked value="鲜虾仁100g">虾仁</label>
+  <label><input type="checkbox" name="fishList" checked value="白灼基围虾100g">基围虾</label>
+  <label><input type="checkbox" name="fishList" checked value="清蒸多宝鱼100g">多宝鱼</label>
+  <label><input type="checkbox" name="fishList" checked value="清蒸龙利鱼100g">龙利鱼</label>
+</div>
+<div>蔬菜组合</div>
+<div class="check-group">
+  <label><input type="checkbox" name="vegList" checked value="生菜、油麦菜">生菜油麦菜</label>
+  <label><input type="checkbox" name="vegList" checked value="娃娃菜、香菇">娃娃菜香菇</label>
+  <label><input type="checkbox" name="vegList" checked value="茼蒿、杏鲍菇">茼蒿杏鲍菇</label>
+  <label><input type="checkbox" name="vegList" checked value="西兰花、白玉菇">西兰花白玉菇</label>
+  <label><input type="checkbox" name="vegList" checked value="小白菜、蟹味菇">小白菜蟹味菇</label>
+</div>
+<div>水果（血糖达标才吃）</div>
+<div class="check-group">
+  <label><input type="checkbox" name="fruitList" checked value="绿猕猴桃1只">绿猕猴桃</label>
+  <label><input type="checkbox" name="fruitList" checked value="西梅3颗">西梅</label>
+  <label><input type="checkbox" name="fruitList" checked value="车厘子100g">车厘子</label>
+  <label><input type="checkbox" name="fruitList" checked value="油桃1个">油桃</label>
+</div>
+<div>坚果</div>
+<div class="check-group">
+  <label><input type="checkbox" name="nutList" checked value="10g核桃">核桃</label>
+  <label><input type="checkbox" name="nutList" checked value="10g开心果">开心果</label>
+  <label><input type="checkbox" name="nutList" checked value="10g黑芝麻粉">黑芝麻粉</label>
+</div>
+</div>
+
+<div id="menuBox">
+  <!-- 周一 -->
+  <div class="day">
+    <h3>周一</h3>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/4147/4147805.png"><span class="time">空腹：</span>一杯温水</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1046/1046250.png"><span class="time">早餐8:15前：</span>🥚水煮蛋50g <span class="shop-tag">盒马/山姆</span> + 🍞全麦面包50g <span class="shop-tag">奥乐齐</span> + 🥬清炒生菜 + 叶酸</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">加餐10:00：</span>🥛200ml纯牛奶 <span class="shop-tag">山姆</span> + 🥒去皮黄瓜（饿加2片低GI饼干）</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2665/2665209.png"><span class="time">午餐11:50：</span>🍚杂粮饭100g（大米+藜麦+糙米）<span class="shop-tag">山姆</span> + 🥩香煎瘦牛肉100g <span class="shop-tag">山姆</span> + 🥬220g菌菇+油麦菜<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1531/1531379.png"><span class="time">14:00：</span>🍅去皮大番茄（血糖达标加🥝1只绿猕猴桃 <span class="shop-tag">盒马</span>）</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">16:00加餐：</span>🥛100ml无糖酸奶 <span class="shop-tag">奥乐齐</span> + 🥜10g核桃（2个）<span class="shop-tag">山姆</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1146/1146045.png"><span class="time">晚餐18:30：</span>🍚杂粮饭100g + 🐟清蒸鲈鱼100g <span class="shop-tag fish-tag">楼下鱼摊</span> + 🥦220g西兰花+白玉菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">21:30加餐：</span>🥛100ml无糖酸奶 + DGI饼干20g <span class="shop-tag">山姆</span></div>
+  </div>
+
+  <!-- 周二 -->
+  <div class="day">
+    <h3>周二</h3>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/4147/4147805.png"><span class="time">空腹：</span>一杯温水</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1046/1046250.png"><span class="time">早餐8:15前：</span>🥚水煮蛋50g <span class="shop-tag">盒马/山姆</span> + 🌾纯燕麦50g <span class="shop-tag">山姆</span> + 🥒凉拌黄瓜 + 叶酸</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">加餐10:00：</span>🥛200ml纯牛奶 <span class="shop-tag">山姆</span> + 🥒去皮黄瓜</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2665/2665209.png"><span class="time">午餐11:50：</span>🍚杂粮饭100g（大米+荞麦+燕麦）<span class="shop-tag">山姆</span> + 🩸卤鸭血100g <span class="shop-tag">盒马</span> + 🥬220g娃娃菜+香菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1531/1531379.png"><span class="time">14:00：</span>🍅去皮大番茄（血糖达标加🫐3颗西梅 <span class="shop-tag">奥乐齐</span>）</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">16:00加餐：</span>🥛100ml无糖酸奶 <span class="shop-tag">奥乐齐</span> + 🥜10g开心果 <span class="shop-tag">山姆</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1146/1146045.png"><span class="time">晚餐18:30：</span>🍚杂粮饭100g + 🥩香干炒瘦肉100g <span class="shop-tag">奥乐齐</span> + 🥬220g上海青+蟹味菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">21:30加餐：</span>🥛100ml纯奶 + 🌾燕麦20g <span class="shop-tag">山姆</span></div>
+  </div>
+
+  <!-- 周三 -->
+  <div class="day">
+    <h3>周三</h3>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/4147/4147805.png"><span class="time">空腹：</span>一杯温水</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1046/1046250.png"><span class="time">早餐8:15前：</span>🥚水煮蛋50g <span class="shop-tag">盒马/山姆</span> + 🫓荞麦饼50g <span class="shop-tag">盒马</span> + 🥬清炒小白菜 + 叶酸</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">加餐10:00：</span>🥛200ml纯牛奶 <span class="shop-tag">山姆</span> + 🥒去皮黄瓜</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2665/2665209.png"><span class="time">午餐11:50：</span>🍚杂粮饭100g + 🥩卤牛心100g <span class="shop-tag">盒马</span> + 🥬220g茼蒿+杏鲍菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1531/1531379.png"><span class="time">14:00：</span>🍅去皮大番茄（血糖达标加🍒车厘子100g <span class="shop-tag">奥乐齐</span>）</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">16:00加餐：</span>🥛100ml无糖酸奶 <span class="shop-tag">奥乐齐</span> + 🥜10g黑芝麻粉 <span class="shop-tag">山姆</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1146/1146045.png"><span class="time">晚餐18:30：</span>🍚杂粮饭100g + 🦐鲜虾仁100g <span class="shop-tag fish-tag">楼下鱼摊</span> + 🥬220g菠菜+金针菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">21:30加餐：</span>🥛100ml无糖酸奶 + DGI饼干20g <span class="shop-tag">山姆</span></div>
+  </div>
+
+  <!-- 周四 -->
+  <div class="day">
+    <h3>周四</h3>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/4147/4147805.png"><span class="time">空腹：</span>一杯温水</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1046/1046250.png"><span class="time">早餐8:15前：</span>🥚水煮蛋50g <span class="shop-tag">盒马/山姆</span> + 🍞全麦面包50g <span class="shop-tag">奥乐齐</span> + 🥬凉拌生菜 + 叶酸</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">加餐10:00：</span>🥛200ml纯牛奶 <span class="shop-tag">山姆</span> + 🥒去皮黄瓜</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2665/2665209.png"><span class="time">午餐11:50：</span>🍚杂粮饭100g + 🥩卤鸡肝100g（本周补血）<span class="shop-tag">盒马</span> + 🥬220g油麦菜+平菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1531/1531379.png"><span class="time">14:00：</span>🍅去皮大番茄（血糖达标加🍑油桃1个 <span class="shop-tag">盒马</span>）</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">16:00加餐：</span>🥛100ml无糖酸奶 <span class="shop-tag">奥乐齐</span> + 🥜10g核桃 <span class="shop-tag">山姆</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1146/1146045.png"><span class="time">晚餐18:30：</span>🍚杂粮饭100g + 🥩北豆腐炖瘦肉100g <span class="shop-tag">奥乐齐</span> + 🥦220g西兰花+海鲜菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">21:30加餐：</span>🥛100ml纯奶 + 🌾燕麦20g <span class="shop-tag">山姆</span></div>
+  </div>
+
+  <!-- 周五 -->
+  <div class="day">
+    <h3>周五</h3>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/4147/4147805.png"><span class="time">空腹：</span>一杯温水</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1046/1046250.png"><span class="time">早餐8:15前：</span>🥚水煮蛋50g <span class="shop-tag">盒马/山姆</span> + 🌾纯燕麦50g <span class="shop-tag">山姆</span> + 🥬清炒娃娃菜 + 叶酸</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">加餐10:00：</span>🥛200ml纯牛奶 <span class="shop-tag">山姆</span> + 🥒去皮黄瓜</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2665/2665209.png"><span class="time">午餐11:50：</span>🍚杂粮饭100g + 🥩瘦鸭胸肉100g <span class="shop-tag">山姆</span> + 🥬220g生菜+香菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1531/1531379.png"><span class="time">14:00：</span>🍅去皮大番茄（血糖达标加🥝猕猴桃1只 <span class="shop-tag">盒马</span>）</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">16:00加餐：</span>🥛100ml无糖酸奶 <span class="shop-tag">奥乐齐</span> + 🥜10g开心果 <span class="shop-tag">山姆</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1146/1146045.png"><span class="time">晚餐18:30：</span>🍚杂粮饭100g + 🐟清蒸鳕鱼100g <span class="shop-tag fish-tag">楼下鱼摊</span> + 🥬220g小白菜+杏鲍菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">21:30加餐：</span>🥛100ml无糖酸奶 + DGI饼干20g <span class="shop-tag">山姆</span></div>
+  </div>
+
+  <!-- 周六 -->
+  <div class="day">
+    <h3>周六</h3>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/4147/4147805.png"><span class="time">空腹：</span>一杯温水</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1046/1046250.png"><span class="time">早餐8:15前：</span>🥚水煮蛋50g <span class="shop-tag">盒马/山姆</span> + 🫓荞麦饼50g <span class="shop-tag">盒马</span> + 🥬凉拌油麦菜 + 叶酸</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">加餐10:00：</span>🥛200ml纯牛奶 <span class="shop-tag">山姆</span> + 🥒去皮黄瓜</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2665/2665209.png"><span class="time">午餐11:50：</span>🍚杂粮饭100g + 🥩瘦牛肉100g <span class="shop-tag">山姆</span> + 🥬220g茼蒿+金针菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1531/1531379.png"><span class="time">14:00：</span>🍅去皮大番茄（血糖达标加🫐西梅3颗 <span class="shop-tag">奥乐齐</span>）</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">16:00加餐：</span>🥛100ml无糖酸奶 <span class="shop-tag">奥乐齐</span> + 🥜10g黑芝麻粉 <span class="shop-tag">山姆</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1146/1146045.png"><span class="time">晚餐18:30：</span>🍚杂粮饭100g + 🥩豆干+瘦肉100g <span class="shop-tag">奥乐齐</span> + 🥬220g生菜+蟹味菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">21:30加餐：</span>🥛100ml纯奶 + 🌾燕麦20g <span class="shop-tag">山姆</span></div>
+  </div>
+
+  <!-- 周日 -->
+  <div class="day">
+    <h3>周日</h3>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/4147/4147805.png"><span class="time">空腹：</span>一杯温水</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1046/1046250.png"><span class="time">早餐8:15前：</span>🥚水煮蛋50g <span class="shop-tag">盒马/山姆</span> + 🍞全麦面包50g <span class="shop-tag">奥乐齐</span> + 🥦清炒西兰花 + 叶酸</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">加餐10:00：</span>🥛200ml纯牛奶 <span class="shop-tag">山姆</span> + 🥒去皮黄瓜</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2665/2665209.png"><span class="time">午餐11:50：</span>🍚杂粮饭100g + 🩸鸭血100g（本周补血）<span class="shop-tag">盒马</span> + 🥬220g小白菜+平菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1531/1531379.png"><span class="time">14:00：</span>🍅去皮大番茄（血糖达标加🍒车厘子100g <span class="shop-tag">奥乐齐</span>）</div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">16:00加餐：</span>🥛100ml无糖酸奶 <span class="shop-tag">奥乐齐</span> + 🥜10g核桃 <span class="shop-tag">山姆</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/1146/1146045.png"><span class="time">晚餐18:30：</span>🍚杂粮饭100g + 🦐白灼基围虾100g <span class="shop-tag fish-tag">楼下鱼摊</span> + 🥬220g油麦菜+白玉菇<span class="shop-tag">盒马</span></div>
+    <div class="item"><img class="food-icon" src="https://cdn-icons-png.flaticon.com/512/2784/2784471.png"><span class="time">21:30加餐：</span>🥛100ml无糖酸奶 + DGI饼干20g <span class="shop-tag">山姆</span></div>
+  </div>
+</div>
+<div class="btn-wrap">
+  <button class="rotate-btn" onclick="randomMenu()">🔀 按我的喜好，随机生成一周菜谱</button>
+  <button class="reset-btn" onclick="resetCheck()">🔄 重置全部喜好勾选</button>
+  <button class="clear-save-btn" onclick="clearSavedMenu()">🗑️ 清空本地保存菜谱</button>
+</div>
+
+<script>
+// localStorage key
+const STORAGE_KEY = "tangma_menu_save";
+
+// 获取勾选框数组（按name分组）
+function getCheckedValues(name){
+  const inputs = document.querySelectorAll(`input[name="${name}"]:checked`);
+  let arr = [];
+  inputs.forEach(i=>arr.push(i.value));
+  return arr;
+}
+function getRandom(arr){
+  if(arr.length===0) return "【请勾选至少一项】";
+  return arr[Math.floor(Math.random()*arr.length)];
+}
+
+// 随机生成菜谱并保存到localStorage
+function randomMenu(){
+  const breakfastCarb = getCheckedValues("breakfastCarb");
+  const lunchMeat = getCheckedValues("lunchMeat");
+  const fishList = getCheckedValues("fishList");
+  const vegList = getCheckedValues("vegList");
+  const fruitList = getCheckedValues("fruitList");
+  const nutList = getCheckedValues("nutList");
+
+  const days = document.querySelectorAll(".day");
+  days.forEach(day=>{
+    let html = day.innerHTML;
+    html = html.replace(/(全麦面包50g|纯燕麦50g|荞麦饼50g)/, getRandom(breakfastCarb));
+    html = html.replace(/(瘦牛肉100g|鸭血100g|牛心100g|卤鸡肝100g|瘦鸭胸100g|瘦肉\+豆干100g)/, getRandom(lunchMeat));
+    html = html.replace(/(清蒸鲈鱼100g|清蒸鳕鱼100g|鲜虾仁100g|白灼基围虾100g|清蒸多宝鱼100g|清蒸龙利鱼100g)/, getRandom(fishList));
+    html = html.replace(/生菜、油麦菜|娃娃菜、香菇|茼蒿、杏鲍菇|西兰花、白玉菇|小白菜、蟹味菇/, getRandom(vegList));
+    html = html.replace(/绿猕猴桃1只|西梅3颗|车厘子100g|油桃1个/, getRandom(fruitList));
+    html = html.replace(/10g核桃|10g开心果|10g黑芝麻粉/, getRandom(nutList));
+    day.innerHTML = html;
+  })
+  // 保存当前菜谱HTML到本地存储
+  const menuBox = document.getElementById("menuBox");
+  localStorage.setItem(STORAGE_KEY, menuBox.innerHTML);
+  alert("✅ 已根据你勾选的喜好，重新生成一周菜谱！\n💾 菜谱已保存到本地，下次打开页面自动加载");
+}
+
+// 重置勾选
+function resetCheck(){
+  document.querySelectorAll('.preference-panel input[type="checkbox"]').forEach(cb=>cb.checked=true);
+  alert("✅ 已重置所有食材勾选");
+}
+
+// 清空本地保存
+function clearSavedMenu(){
+  localStorage.removeItem(STORAGE_KEY);
+  alert("🗑️ 本地保存的菜谱已清空，刷新页面恢复原始默认菜谱");
+}
+
+// 页面加载完成：读取本地保存，自动渲染上次菜谱
+window.onload = function(){
+  const savedHtml = localStorage.getItem(STORAGE_KEY);
+  if(savedHtml){
+    document.getElementById("menuBox").innerHTML = savedHtml;
+  }
+}
+</script>
+</body>
+</html>
