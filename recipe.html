@@ -254,7 +254,7 @@ function generateMenuData() {
     const dinnerSecond = getSecondProtein();
 
     // 蔬菜逻辑不变
-    const vegCount = 2 + Math.floor(Math.random() * 2);
+    const vegCount = 3 + Math.round(Math.random() * 2);
     const dayVegs = pickUnique(vegList, vegCount);
 
     weekData.push({
@@ -264,7 +264,7 @@ function generateMenuData() {
       dinnerSecondProtein: dinnerSecond,
       vegB: dayVegs[0] || "",
       vegL: dayVegs.slice(0, 2).join("、"),
-      vegD: dayVegs.slice(1).join("、"),
+      vegD: dayVegs.slice(2).join("、"),
       vegAll: dayVegs,
       fruit: getRandom(fruitList),
       nut: getRandom(nutList),
